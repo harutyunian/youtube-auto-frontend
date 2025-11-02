@@ -1,4 +1,5 @@
 import { HttpClient } from './http'
+import { YOUTUBE_API_BASE_URL, API_ENDPOINTS } from '../constants/api.constants'
 
 export interface Thumbnail {
   url: string
@@ -29,12 +30,12 @@ export interface GetShortsParams {
   page?: number
 }
 
-const youtubeHttp = new HttpClient({ baseURL: 'http://localhost:3000' })
+const youtubeHttp = new HttpClient({ baseURL: YOUTUBE_API_BASE_URL })
 
 class YouTubeService {
   async getShorts({ channelName, page }: GetShortsParams): Promise<YouTubeShort[]> {
     const params = page ? { page } : undefined
-    return youtubeHttp.get<YouTubeShort[]>(`/youtube/short/${channelName}`, { params })
+    return youtubeHttp.get<YouTubeShort[]>(API_ENDPOINTS.YOUTUBE.SHORTS(channelName), { params })
   }
 }
 

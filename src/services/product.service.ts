@@ -1,4 +1,5 @@
 import http from './http'
+import { API_ENDPOINTS } from '../constants/api.constants'
 
 export interface Product {
   id: string
@@ -20,14 +21,14 @@ export interface UpdateProductInput {
 }
 
 const ProductService = {
-  list: () => http.get<Product[]>('/products'),
-  getById: (id: string) => http.get<Product>(`/products/${id}`),
-  create: (payload: CreateProductInput) => http.post<Product, CreateProductInput>('/products', payload),
+  list: () => http.get<Product[]>(API_ENDPOINTS.PRODUCTS.BASE),
+  getById: (id: string) => http.get<Product>(API_ENDPOINTS.PRODUCTS.BY_ID(id)),
+  create: (payload: CreateProductInput) => http.post<Product, CreateProductInput>(API_ENDPOINTS.PRODUCTS.BASE, payload),
   update: (id: string, payload: UpdateProductInput) =>
-    http.put<Product, UpdateProductInput>(`/products/${id}`, payload),
+    http.put<Product, UpdateProductInput>(API_ENDPOINTS.PRODUCTS.BY_ID(id), payload),
   patch: (id: string, payload: UpdateProductInput) =>
-    http.patch<Product, UpdateProductInput>(`/products/${id}`, payload),
-  delete: (id: string) => http.delete<void>(`/products/${id}`),
+    http.patch<Product, UpdateProductInput>(API_ENDPOINTS.PRODUCTS.BY_ID(id), payload),
+  delete: (id: string) => http.delete<void>(API_ENDPOINTS.PRODUCTS.BY_ID(id)),
 }
 
 export default ProductService
