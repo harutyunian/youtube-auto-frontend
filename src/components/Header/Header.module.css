@@ -1,0 +1,15 @@
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.searchRoot {
+  max-width: 640px;
+  width: 100%;
+}
+
+.grow {
+  flex: 1;
+}
+
+
