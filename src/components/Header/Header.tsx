@@ -54,6 +54,15 @@ export default function Header() {
           >
             YouTube Shorts
           </Button>
+          <Button
+            component={Link}
+            to="/channel-management"
+            color="inherit"
+            variant={location.pathname === '/channel-management' ? 'outlined' : 'text'}
+            sx={{ minWidth: 'auto' }}
+          >
+            Channel Management
+          </Button>
         </Stack>
 
         <Box className={styles.grow} />
